@@ -67,15 +67,6 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
             self.loginCompletion(nil, error);
         }];
         
-//        [[TwitterClient sharedInstance] GET:@"1.1/statuses/home_timeline.json" parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-//            //            NSLog(@"Timeline is %@", responseObject);
-//            NSArray *tweets = [Tweet tweetsWithArray:responseObject];
-//            for (Tweet *tweet in tweets) {
-//                NSLog(@"tweet: %@, created: %@", tweet.text, tweet.createdAt);
-//            }
-//        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-//            NSLog(@"couldn't get timeline");
-//        }];
     } failure:^(NSError *error) {
         NSLog(@"failed to get access token");
         self.loginCompletion(nil, error);
@@ -94,6 +85,23 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
 
 - (void)postTweet:(NSDictionary *)params completion:(void (^)(NSString *message, NSError *error))completion{
     [self POST:@"1.1/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        completion(@"Success!", nil);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        completion(nil, error);
+    }];
+}
+
+-(void)retweet:(NSNumber *)tweetId completion:(void (^)(NSString *, NSError *))completion{
+    NSString *url = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", tweetId];
+    [self POST:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        completion(@"Success!", nil);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        completion(nil, error);
+    }];
+}
+
+- (void)favorite:(NSDictionary *)params completion:(void (^)(NSString *message, NSError *error))completion{
+    [self POST:@"1.1/favorites/create.json" parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         completion(@"Success!", nil);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         completion(nil, error);

@@ -28,7 +28,7 @@
     formatter.dateFormat = @"M/d/yy";
     
     self.tweetDate.text = [formatter stringFromDate:tweet.createdAt];
-    formatter.dateFormat = @"M/d/yy";
+    formatter.dateFormat = @"h:m a";
     self.tweetTime.text = [formatter stringFromDate:tweet.createdAt];
     
     NSURL *url = [NSURL URLWithString:tweet.user.profileImageUrl];

@@ -20,4 +20,10 @@
 
 - (void)postTweet:(NSDictionary *)params completion:(void (^)(NSString *message, NSError *error))completion;
 
+- (void)retweet:(NSNumber *)tweetId completion:(void (^)(NSString *message, NSError *error))completion;
+
+- (void)favorite:(NSDictionary *)params completion:(void (^)(NSString *message, NSError *error))completion;
+
+
+
 @end

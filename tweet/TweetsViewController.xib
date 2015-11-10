@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -16,9 +16,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" id="0N1-Dj-jcA">
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0N1-Dj-jcA">
                     <rect key="frame" x="0.0" y="8" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
                         <navigationItem title="Tweet Tweet" id="vGP-Hr-vdW">
                             <barButtonItem key="leftBarButtonItem" style="plain" id="cYS-pu-PDd">
@@ -44,13 +43,22 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xw8-Pd-l56">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xw8-Pd-l56">
                     <rect key="frame" x="0.0" y="52" width="320" height="516"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="xw8-Pd-l56" secondAttribute="trailing" id="23y-52-ssh"/>
+                <constraint firstItem="0N1-Dj-jcA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="bfi-15-z7i"/>
+                <constraint firstAttribute="bottom" secondItem="xw8-Pd-l56" secondAttribute="bottom" id="bq0-FU-aj8"/>
+                <constraint firstItem="0N1-Dj-jcA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ojS-AX-BZ5"/>
+                <constraint firstItem="xw8-Pd-l56" firstAttribute="top" secondItem="0N1-Dj-jcA" secondAttribute="bottom" id="qBX-ft-ket"/>
+                <constraint firstAttribute="trailing" secondItem="0N1-Dj-jcA" secondAttribute="trailing" id="rv7-mN-NJ4"/>
+                <constraint firstItem="xw8-Pd-l56" firstAttribute="top" secondItem="0N1-Dj-jcA" secondAttribute="bottom" id="uSJ-ds-ITQ"/>
+                <constraint firstItem="xw8-Pd-l56" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xJ3-dj-apT"/>
+            </constraints>
             <point key="canvasLocation" x="1054" y="505"/>
         </view>
     </objects>

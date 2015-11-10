@@ -21,7 +21,7 @@
         formatter.dateFormat = @"EEE MMM d HH:mm:ss Z y";
         
         self.createdAt = [formatter dateFromString:createdAtString];
-//        self.createdAt = createdAtString;
+        self.id = dictionary[@"id"];
 
     }
     return self;

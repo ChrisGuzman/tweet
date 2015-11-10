@@ -27,6 +27,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 100.0;
+    [self.tableView registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.timelineTweets = [[NSMutableArray alloc] init];
     
@@ -68,8 +69,9 @@
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TweetViewCell *cell = [[TweetViewCell alloc] init];
+    TweetViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetViewCell"];
     Tweet *tweet = [self.timelineTweets objectAtIndex:indexPath.row];
+    cell.tweet = tweet;
     [cell setUpTweet:tweet];
     return cell;
 }

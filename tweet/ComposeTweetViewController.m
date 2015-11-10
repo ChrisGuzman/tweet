@@ -22,8 +22,11 @@
     [super viewDidLoad];
     self.tweetText.layer.borderWidth = 5.0f;
     self.tweetText.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancelPressed)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(onCancelPressed)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Post Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(postTweet)];
+    if (self.replyScreenName != nil) {
+        self.tweetText.text = self.replyScreenName;
+    }
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -42,19 +45,23 @@
 }
 */
 - (void)postTweet {
-    NSDictionary *params = @{
-                             @"status": self.tweetText.text
-                             };
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                @"status": self.tweetText.text
+                                                                                }];
+    if (self.replyID != nil) {
+        dict[@"in_reply_to_status_id"] = self.replyID;
+    }
+    
+    NSDictionary *params = [NSDictionary dictionaryWithDictionary:dict];
     [[TwitterClient sharedInstance] postTweet:params completion:^(NSString *message, NSError *error) {
-//        TweetsViewController *vc = [[TweetsViewController alloc] init];
-//        [self presentViewController:vc animated:YES completion:nil];
+
         [self dismissViewControllerAnimated:YES completion:nil];
+        if (error!= nil)
+            NSLog(@"Error %@", error);
     }];
 }
 - (void)onCancelPressed {
-//    TweetsViewController *vc = [[TweetsViewController alloc] init];
     [self dismissViewControllerAnimated:YES completion:nil];
-//    [self presentViewController:vc animated:YES completion:nil];
 }
 
 @end

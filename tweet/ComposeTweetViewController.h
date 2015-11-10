@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ComposeTweetViewController : UIViewController
-
+@property NSNumber* replyID;
+@property NSString* replyScreenName;
 @end
