@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TweetsViewController : UIViewController
+@property (nonatomic)  UIViewController* menuViewController;
 
 @end

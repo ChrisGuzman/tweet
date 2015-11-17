@@ -15,9 +15,12 @@
 #import "TweetViewCell.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UIView *menuView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *timelineTweets;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftMarginConstraint;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property CGFloat originalLeftMargin;
 @end
 
 @implementation TweetsViewController
@@ -30,6 +33,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"TweetViewCell" bundle:nil] forCellReuseIdentifier:@"TweetViewCell"];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.timelineTweets = [[NSMutableArray alloc] init];
+//    self.menuViewController.view.frame = self.menuView.bounds;
     
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -48,12 +52,30 @@
         [self.timelineTweets removeAllObjects];
         [self.timelineTweets addObjectsFromArray:tweets];
         for (Tweet *tweet in tweets) {
-                        NSLog(@"text: %@", tweet.user.profileImageUrl);
+//                        NSLog(@"text: %@", tweet.user.profileImageUrl);
+        }
+        if (error != nil) {
+            NSLog(@"%@", error);
         }
         [self.refreshControl endRefreshing];
         [self.tableView reloadData];
     }];
 }
+
+- (void)setMenuViewController:(UINavigationController *)menuViewController {
+    _menuViewController = menuViewController;
+    
+    [self.view layoutIfNeeded];
+    [self.menuView addSubview:menuViewController.view];
+}
+
+//- (void)setContentViewController:(UINavigationController *)contentViewController {
+//    _contentViewController = contentViewController;
+//    
+//    [self.view layoutIfNeeded];
+//    [self.contentView addSubview:contentViewController.view];
+//    [self close];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -84,6 +106,41 @@
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
 }
+
+- (IBAction)onTableViewPanned:(UIPanGestureRecognizer *)sender {
+    CGPoint translation = [sender translationInView:self.view];
+    CGPoint velocity = [sender velocityInView:self.view];
+    
+    if ([sender state] == UIGestureRecognizerStateBegan) {
+        self.originalLeftMargin = self.leftMarginConstraint.constant;
+    }
+    else if ([sender state] == UIGestureRecognizerStateChanged) {
+        self.leftMarginConstraint.constant = self.originalLeftMargin + translation.x;
+    }
+    else if ([sender state] == UIGestureRecognizerStateEnded) {
+        if (velocity.x > 0) {
+            [self open];
+        } else {
+            [self close];
+        }
+        [self.view layoutIfNeeded];
+    }
+}
+
+- (void)open {
+    [UIView animateWithDuration:.3 animations:^{
+        self.leftMarginConstraint.constant = self.view.frame.size.width - 100;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)close {
+    [UIView animateWithDuration:.3 animations:^{
+        self.leftMarginConstraint.constant = 0;
+        [self.view layoutIfNeeded];
+    }];
+}
+
 
 /*
 #pragma mark - Navigation

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TweetsViewController.h"
+#import "MenuViewController.h"
 #import "TwitterClient.h"
 #import "User.h"
 #import "Tweet.h"
@@ -25,6 +26,10 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:UserDidLogoutNotification object:nil];
+    TweetsViewController *tweetVC = [[TweetsViewController alloc] init];
+    MenuViewController *menuVC = [[MenuViewController alloc] init];
+    
+    tweetVC.menuViewController = menuVC;
     
     User *user = [User currentUser];
     if (user != nil) {

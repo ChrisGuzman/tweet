@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TweetsViewController">
             <connections>
+                <outlet property="leftMarginConstraint" destination="tv9-H1-L8z" id="Ols-lD-n6o"/>
+                <outlet property="menuView" destination="hVf-Lt-zgA" id="3By-Hx-LLd"/>
                 <outlet property="tableView" destination="xw8-Pd-l56" id="JMZ-zJ-HeS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,16 +23,25 @@
                     <rect key="frame" x="0.0" y="8" width="320" height="44"/>
                     <items>
                         <navigationItem title="Tweet Tweet" id="vGP-Hr-vdW">
-                            <barButtonItem key="leftBarButtonItem" style="plain" id="cYS-pu-PDd">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HRF-V1-ozZ">
-                                    <rect key="frame" x="16" y="7" width="48" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Logout"/>
-                                    <connections>
-                                        <action selector="onLogout:" destination="-1" eventType="touchUpInside" id="H25-ME-74T"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
+                            <leftBarButtonItems>
+                                <barButtonItem style="plain" id="cYS-pu-PDd">
+                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HRF-V1-ozZ">
+                                        <rect key="frame" x="16" y="7" width="48" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Logout"/>
+                                        <connections>
+                                            <action selector="onLogout:" destination="-1" eventType="touchUpInside" id="H25-ME-74T"/>
+                                        </connections>
+                                    </button>
+                                </barButtonItem>
+                                <barButtonItem style="plain" id="xFI-Cg-Woh">
+                                    <view key="customView" contentMode="scaleToFill" id="hVf-Lt-zgA" userLabel="Menu View">
+                                        <rect key="frame" x="72" y="-262" width="320" height="568"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </barButtonItem>
+                            </leftBarButtonItems>
                             <barButtonItem key="rightBarButtonItem" style="plain" id="Qvo-1B-HFv">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="grR-WP-ncv">
                                     <rect key="frame" x="228" y="7" width="76" height="30"/>
@@ -49,17 +61,25 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="xw8-Pd-l56" secondAttribute="trailing" id="23y-52-ssh"/>
+                <constraint firstItem="xw8-Pd-l56" firstAttribute="top" secondItem="0N1-Dj-jcA" secondAttribute="bottom" id="XLu-3s-cgv"/>
                 <constraint firstItem="0N1-Dj-jcA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="bfi-15-z7i"/>
-                <constraint firstAttribute="bottom" secondItem="xw8-Pd-l56" secondAttribute="bottom" id="bq0-FU-aj8"/>
+                <constraint firstItem="xw8-Pd-l56" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="kq4-Go-MuD"/>
                 <constraint firstItem="0N1-Dj-jcA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ojS-AX-BZ5"/>
-                <constraint firstItem="xw8-Pd-l56" firstAttribute="top" secondItem="0N1-Dj-jcA" secondAttribute="bottom" id="qBX-ft-ket"/>
                 <constraint firstAttribute="trailing" secondItem="0N1-Dj-jcA" secondAttribute="trailing" id="rv7-mN-NJ4"/>
-                <constraint firstItem="xw8-Pd-l56" firstAttribute="top" secondItem="0N1-Dj-jcA" secondAttribute="bottom" id="uSJ-ds-ITQ"/>
-                <constraint firstItem="xw8-Pd-l56" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xJ3-dj-apT"/>
+                <constraint firstAttribute="bottom" secondItem="xw8-Pd-l56" secondAttribute="bottom" id="t7h-rn-T5Q"/>
+                <constraint firstItem="xw8-Pd-l56" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tv9-H1-L8z"/>
             </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="LAi-JG-c4b" appends="YES" id="V3A-1d-GXV"/>
+            </connections>
             <point key="canvasLocation" x="1054" y="505"/>
         </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="LAi-JG-c4b">
+            <connections>
+                <action selector="onTableViewPanned:" destination="-1" id="Hjo-Jm-GID"/>
+            </connections>
+        </panGestureRecognizer>
     </objects>
 </document>
