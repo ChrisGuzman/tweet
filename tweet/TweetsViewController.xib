@@ -24,9 +24,33 @@
                     <items>
                         <navigationItem title="Tweet Tweet" id="vGP-Hr-vdW">
                             <leftBarButtonItems>
+                                <barButtonItem systemItem="organize" id="tL5-jp-cxv">
+                                    <connections>
+                                        <action selector="onMenuPressed:" destination="-1" id="GbP-b9-1G8"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem style="plain" id="xFI-Cg-Woh">
+                                    <view key="customView" contentMode="scaleToFill" id="hVf-Lt-zgA" userLabel="Menu View">
+                                        <rect key="frame" x="56" y="-262" width="320" height="568"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </barButtonItem>
+                            </leftBarButtonItems>
+                            <rightBarButtonItems>
+                                <barButtonItem style="plain" id="Qvo-1B-HFv">
+                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="grR-WP-ncv">
+                                        <rect key="frame" x="228" y="7" width="76" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Post Tweet"/>
+                                        <connections>
+                                            <action selector="composeTweet:" destination="-1" eventType="touchUpInside" id="3Mt-OI-sXA"/>
+                                        </connections>
+                                    </button>
+                                </barButtonItem>
                                 <barButtonItem style="plain" id="cYS-pu-PDd">
                                     <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HRF-V1-ozZ">
-                                        <rect key="frame" x="16" y="7" width="48" height="30"/>
+                                        <rect key="frame" x="172" y="7" width="48" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Logout"/>
                                         <connections>
@@ -34,27 +58,40 @@
                                         </connections>
                                     </button>
                                 </barButtonItem>
-                                <barButtonItem style="plain" id="xFI-Cg-Woh">
-                                    <view key="customView" contentMode="scaleToFill" id="hVf-Lt-zgA" userLabel="Menu View">
-                                        <rect key="frame" x="72" y="-262" width="320" height="568"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </barButtonItem>
-                            </leftBarButtonItems>
-                            <barButtonItem key="rightBarButtonItem" style="plain" id="Qvo-1B-HFv">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="grR-WP-ncv">
-                                    <rect key="frame" x="228" y="7" width="76" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Post Tweet"/>
-                                    <connections>
-                                        <action selector="composeTweet:" destination="-1" eventType="touchUpInside" id="3Mt-OI-sXA"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
+                            </rightBarButtonItems>
                         </navigationItem>
                     </items>
                 </navigationBar>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iCK-ff-X6A">
+                    <rect key="frame" x="0.0" y="52" width="320" height="516"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VpT-b1-A2q">
+                            <rect key="frame" x="11" y="35" width="41" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Home"/>
+                            <connections>
+                                <action selector="onHomePressed:" destination="-1" eventType="touchUpInside" id="wyS-DM-ZVh"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPh-li-7n5">
+                            <rect key="frame" x="8" y="104" width="64" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Mentions"/>
+                            <connections>
+                                <action selector="onMentionsPressed:" destination="-1" eventType="touchUpInside" id="tn6-kF-ydP"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaG-Qn-pPO">
+                            <rect key="frame" x="11" y="164" width="44" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Profile"/>
+                            <connections>
+                                <action selector="onProfilePressed:" destination="-1" eventType="touchUpInside" id="pxR-bw-Zz5"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xw8-Pd-l56">
                     <rect key="frame" x="0.0" y="52" width="320" height="516"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

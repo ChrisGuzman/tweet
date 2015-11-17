@@ -26,6 +26,8 @@
 		7AD07F5E1BEEA5AB009F3CE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AD07F5C1BEEA5AB009F3CE4 /* LaunchScreen.storyboard */; };
 		7AE132141BFA9C4D00704EC6 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE132121BFA9C4D00704EC6 /* MenuViewController.m */; };
 		7AE132151BFA9C4D00704EC6 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE132131BFA9C4D00704EC6 /* MenuViewController.xib */; };
+		7AE132191BFACAB100704EC6 /* ProflieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE132171BFACAB100704EC6 /* ProflieViewController.m */; };
+		7AE1321A1BFACAB100704EC6 /* ProflieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE132181BFACAB100704EC6 /* ProflieViewController.xib */; };
 		F40CA0DDA3E97D2231653CC0 /* libPods-tweet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A79ADA97FE6F47D4C09CAA8E /* libPods-tweet.a */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,9 @@
 		7AE132111BFA9C4D00704EC6 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		7AE132121BFA9C4D00704EC6 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		7AE132131BFA9C4D00704EC6 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		7AE132161BFACAB100704EC6 /* ProflieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProflieViewController.h; sourceTree = "<group>"; };
+		7AE132171BFACAB100704EC6 /* ProflieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProflieViewController.m; sourceTree = "<group>"; };
+		7AE132181BFACAB100704EC6 /* ProflieViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProflieViewController.xib; sourceTree = "<group>"; };
 		A79ADA97FE6F47D4C09CAA8E /* libPods-tweet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tweet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8E42519A1BAA5A59FABC12A /* Pods-tweet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tweet.release.xcconfig"; path = "Pods/Target Support Files/Pods-tweet/Pods-tweet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +139,9 @@
 				7AE132111BFA9C4D00704EC6 /* MenuViewController.h */,
 				7AE132121BFA9C4D00704EC6 /* MenuViewController.m */,
 				7AE132131BFA9C4D00704EC6 /* MenuViewController.xib */,
+				7AE132161BFACAB100704EC6 /* ProflieViewController.h */,
+				7AE132171BFACAB100704EC6 /* ProflieViewController.m */,
+				7AE132181BFACAB100704EC6 /* ProflieViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -248,6 +256,7 @@
 				7A57D41D1BF15DA900D6E242 /* ViewTweetViewController.xib in Resources */,
 				7AE132151BFA9C4D00704EC6 /* MenuViewController.xib in Resources */,
 				7AAE1E811BF0F8A300DDCEBF /* TweetsViewController.xib in Resources */,
+				7AE1321A1BFACAB100704EC6 /* ProflieViewController.xib in Resources */,
 				7AD07F5E1BEEA5AB009F3CE4 /* LaunchScreen.storyboard in Resources */,
 				7AD07F5B1BEEA5AB009F3CE4 /* Assets.xcassets in Resources */,
 				7AAE1E6D1BF009B200DDCEBF /* LoginViewController.xib in Resources */,
@@ -311,6 +320,7 @@
 			files = (
 				7A57D4221BF1745E00D6E242 /* TweetViewCell.m in Sources */,
 				7AAE1E781BF069A100DDCEBF /* User.m in Sources */,
+				7AE132191BFACAB100704EC6 /* ProflieViewController.m in Sources */,
 				7AAE1E731BF04CA900DDCEBF /* TwitterClient.m in Sources */,
 				7AD07F531BEEA5AB009F3CE4 /* AppDelegate.m in Sources */,
 				7AAE1E7B1BF069AA00DDCEBF /* Tweet.m in Sources */,

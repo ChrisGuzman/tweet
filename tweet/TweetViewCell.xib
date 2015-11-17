@@ -14,8 +14,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="381" height="137"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7Q-2g-rza">
+                        <rect key="frame" x="10" y="17" width="46" height="30"/>
+                        <state key="normal" title="Profile"/>
+                        <connections>
+                            <action selector="onButtonPress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bGv-jN-9aX"/>
+                        </connections>
+                    </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fhT-MK-OpZ">
                         <rect key="frame" x="8" y="8" width="48" height="48"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="Koy-hP-hbC"/>
                             <constraint firstAttribute="width" constant="48" id="tXA-Pa-lXM"/>
@@ -69,6 +77,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="handle" destination="88G-9W-6Tj" id="STh-Re-CDm"/>
+                <outlet property="profileButton" destination="y7Q-2g-rza" id="pIq-Ck-4DJ"/>
                 <outlet property="profileImage" destination="fhT-MK-OpZ" id="dPa-Dl-Lqp"/>
                 <outlet property="tweetDate" destination="MAo-cq-Ylz" id="bF3-RC-iJz"/>
                 <outlet property="tweetText" destination="fhJ-vK-kmh" id="Fe1-kR-Gl8"/>

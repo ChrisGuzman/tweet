@@ -13,6 +13,7 @@
 #import "ComposeTweetViewController.h"
 #import "ViewTweetViewController.h"
 #import "TweetViewCell.h"
+#import "ProflieViewController.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *menuView;
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftMarginConstraint;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property CGFloat originalLeftMargin;
+@property (strong, nonatomic) ProflieViewController *profileViewController;
 @end
 
 @implementation TweetsViewController
@@ -35,12 +37,31 @@
     self.timelineTweets = [[NSMutableArray alloc] init];
 //    self.menuViewController.view.frame = self.menuView.bounds;
     
-    
+    self.profileViewController = [[ProflieViewController alloc] init];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     [self fetchTweets];
     
+}
+
+-(void)fetchMentions {
+    NSDictionary *params = @{
+                             @"count": @25
+                             };
+    
+    [[TwitterClient sharedInstance] mentionTimelineWithParams:params completion:^(NSArray *tweets, NSError *error) {
+        [self.timelineTweets removeAllObjects];
+        [self.timelineTweets addObjectsFromArray:tweets];
+        for (Tweet *tweet in tweets) {
+            //                        NSLog(@"text: %@", tweet.user.profileImageUrl);
+        }
+        if (error != nil) {
+            NSLog(@"%@", error);
+        }
+        [self.refreshControl endRefreshing];
+        [self.tableView reloadData];
+    }];
 }
 
 -(void)fetchTweets {
@@ -90,11 +111,16 @@
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TweetViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetViewCell"];
     Tweet *tweet = [self.timelineTweets objectAtIndex:indexPath.row];
     cell.tweet = tweet;
     [cell setUpTweet:tweet];
+    cell.profileButton.tag = indexPath.row;
+    [cell.profileButton addTarget:self action:@selector(profileButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+
+    
     return cell;
 }
 
@@ -105,6 +131,15 @@
     vc.tweet = tweet;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
+}
+
+-(void)profileButtonClick:(id)sender{
+    UIButton *senderButton = (UIButton *)sender;
+    NSLog(@"current row: %ld", (long)senderButton.tag);
+    Tweet *tweet = [self.timelineTweets objectAtIndex:senderButton.tag];
+    User *user = tweet.user;
+    [self showProfile:user];
+    
 }
 
 - (IBAction)onTableViewPanned:(UIPanGestureRecognizer *)sender {
@@ -141,6 +176,32 @@
     }];
 }
 
+- (void)shouldShowProfile:(User *)user {
+    [self showProfile:user];
+}
+
+-(void)showProfile:(User*)user {
+    ProflieViewController *vc = [[ProflieViewController alloc] initWithNibName:@"ProflieViewController" bundle:nil];
+    vc.user = user;
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:nil];
+}
+- (IBAction)onHomePressed:(id)sender {
+    [self close];
+    [self fetchTweets];
+}
+
+- (IBAction)onMentionsPressed:(id)sender {
+    [self close];
+    [self fetchMentions];
+}
+- (IBAction)onProfilePressed:(id)sender {
+    [self close];
+    [self showProfile:[User currentUser]];
+}
+- (IBAction)onMenuPressed:(id)sender {
+    [self open];
+}
 
 /*
 #pragma mark - Navigation
